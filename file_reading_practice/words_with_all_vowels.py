@@ -40,3 +40,18 @@ Explanation:
 =================================================
 
 """
+from pathlib import Path
+
+file_path = Path(__file__).parent / "sowpods.txt"
+
+vowels = set("aeiou")
+count = 0
+
+with open(file_path, "r") as f:
+    for line in f:
+        word = line.strip().lower()
+        if vowels.issubset(set(word)):
+            print(word)
+            count += 1
+
+print("Total words with all vowels:", count)

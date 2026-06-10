@@ -53,3 +53,24 @@ Sorted -> ['b', 'd', 'e', 'h', 'k', 'm', 'n',
 =================================================
 
 """
+from pathlib import Path
+
+seen = set()
+doubled = set()
+
+file_path = Path(__file__).parent / "sowpods.txt"
+
+with open(file_path, "r") as f:
+    for word in f:
+        word = word.strip().lower()
+
+        seen.update(word)
+
+        for i in range(len(word) - 1):
+            if word[i] == word[i + 1]:
+                doubled.add(word[i])
+
+result = sorted(seen - doubled)
+
+print("Letters that never appear back-to-back:")
+print(result)
